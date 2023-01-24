@@ -1,34 +1,18 @@
 <template>
   <ul>
-    <stored-resources :resources="storedResources"></stored-resources>
+    <the-header title="공부자료"></the-header>
+    <the-resources></the-resources>
   </ul>
 </template>
 
 <script>
-import StoredResources from "./components/learning-resources/StoredResources.vue";
+import TheHeader from "./components/layouts/TheHeader.vue";
+import TheResources from "./components/learning-resources/TheResources.vue";
 
 export default {
   components: {
-    StoredResources,
-  },
-  data() {
-    return {
-      //더미 리소스 2개
-      storedResources: [
-        {
-          id: "study-vue.js",
-          title: "Study Vue",
-          description: "The Officieal Vue.js documentation",
-          link: "https://vuejs.org",
-        },
-        {
-          id: "study-react.js",
-          title: "Study React",
-          description: "The Officieal React.js documentation",
-          link: "https://ko.reactjs.org/",
-        },
-      ],
-    };
+    TheHeader,
+    TheResources,
   },
 };
 </script>
