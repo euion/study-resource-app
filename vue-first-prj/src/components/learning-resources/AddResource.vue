@@ -1,3 +1,5 @@
 <template>
-  <div></div>
+  <div>
+    <base-card></base-card>
+  </div>
 </template>
