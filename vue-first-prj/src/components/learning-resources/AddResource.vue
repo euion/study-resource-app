@@ -1,5 +1,18 @@
 <template>
   <div>
+    <base-dialog
+      v-if="inputIsInvalid"
+      title="Invalid Input"
+      @close="confirmError"
+    >
+      <template #default>
+        <p>한 글자 이하의 글자는 입력될 수 없습니다.</p>
+        <p>입력란을 확인하세요</p>
+      </template>
+      <template #actions>
+        <base-button @click="comfirmError"> 통과 </base-button>
+      </template>
+    </base-dialog>
     <base-card>
       <form @submit.prevent="submitData">
         <div class="form-control">
@@ -30,13 +43,30 @@
 <script>
 export default {
   inject: ["addResource"],
+  data() {
+    return {
+      inputIsInvalid: false,
+    };
+  },
   methods: {
     submitData() {
       const enteredTitle = this.$refs.titleInput.value;
       const enteredDescription = this.$refs.descInput.value;
       const enteredUrl = this.$refs.urlInput.value;
 
+      if (
+        enteredTitle.trim() === "" ||
+        enteredDescription.trim() === "" ||
+        enteredUrl.trim() === ""
+      ) {
+        this.inputIsInvalid = true;
+        return;
+      }
+
       this.addResource(enteredTitle, enteredDescription, enteredUrl);
+    },
+    comfirmError() {
+      this.inputIsInvalid = false;
     },
   },
 };
